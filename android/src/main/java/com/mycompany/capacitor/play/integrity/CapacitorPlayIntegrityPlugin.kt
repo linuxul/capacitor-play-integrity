@@ -3,6 +3,7 @@ package com.mycompany.capacitor.play.integrity
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
+import com.getcapacitor.PluginException
 import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.CapacitorPlugin
 import com.google.android.gms.common.ConnectionResult
@@ -20,8 +21,7 @@ public class CapacitorPlayIntegrityPlugin : Plugin() {
         val googleCloudProjectNumber = call.getLong("googleCloudProjectNumber")!!
 
         if (GoogleApiAvailabilityLight.getInstance().isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS) {
-            call.reject("Play Services not found")
-            return
+            throw PluginException("Play Services not found")
         }
         val integrityManager = IntegrityManagerFactory.create(context)
 
