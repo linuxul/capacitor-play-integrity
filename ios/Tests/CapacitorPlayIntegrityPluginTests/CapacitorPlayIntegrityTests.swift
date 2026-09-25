@@ -18,4 +18,11 @@ class CapacitorPlayIntegrityTests: XCTestCase {
 
         XCTAssertEqual("", token)
     }
+
+    func testRequestIntegrityTokenIsRegisteredAsAPromiseMethod() {
+        let plugin = CapacitorPlayIntegrityPlugin()
+
+        XCTAssertEqual(["requestIntegrityToken"], plugin.pluginMethods.map { $0.name })
+        XCTAssertEqual([.promise], plugin.pluginMethods.map { $0.returnType })
+    }
 }

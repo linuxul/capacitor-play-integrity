@@ -10,10 +10,10 @@ public class CapacitorPlayIntegrityPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "CapacitorPlayIntegrityPlugin"
     public let jsName = "CapacitorPlayIntegrity"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "requestIntegrityToken", returnType: .promise)
+        .promise("requestIntegrityToken", CapacitorPlayIntegrityPlugin.requestIntegrityToken)
     ]
 
-    @objc func requestIntegrityToken(_ call: CAPPluginCall) {
+    func requestIntegrityToken(_ call: CAPPluginCall) {
         call.resolve([
             "token": ""
         ])
